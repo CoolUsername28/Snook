@@ -262,14 +262,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 39544463}
-  - component: {fileID: 39544464}
   m_Layer: 0
   m_Name: GameOverPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &39544463
 Transform:
   m_ObjectHideFlags: 0
@@ -286,20 +285,6 @@ Transform:
   - {fileID: 367644844}
   m_Father: {fileID: 746436548}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &39544464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 39544462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b67325822482254994b95ce395b1bfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  retryButton: {fileID: 771232097}
-  menuButton: {fileID: 88674768}
 --- !u!1 &54589556
 GameObject:
   m_ObjectHideFlags: 0
@@ -2221,6 +2206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 792941844}
   - component: {fileID: 792941843}
+  - component: {fileID: 792941845}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -2259,6 +2245,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &792941845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792941842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b67325822482254994b95ce395b1bfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  retryButton: {fileID: 771232097}
+  menuButton: {fileID: 88674768}
+  splashText: {fileID: 1584714165}
+  plashTexts:
+  - Game Over
+  - You Lose
+  - Skill Issue
+  - Better Luck Next Time
+  - You Died
+  - Womp Womp
+  - Game Over :C
 --- !u!1 &797862124
 GameObject:
   m_ObjectHideFlags: 0
@@ -3624,8 +3633,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4629,7 +4638,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2139274632
 Transform:
   m_ObjectHideFlags: 0

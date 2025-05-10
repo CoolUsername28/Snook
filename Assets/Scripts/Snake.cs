@@ -112,7 +112,12 @@ public class Snake : MonoBehaviour, IGameStateListener
     {
         if (other.gameObject.CompareTag("Food"))
         {
+            GameManager.Instance.FoodCollectedCallback();
             Grow();
+        }
+        else if (other.gameObject.CompareTag("Portal"))
+        {
+            GameManager.Instance.NextLevelCallback();
         }
         else if (other.gameObject.CompareTag("Obstacle"))
         {

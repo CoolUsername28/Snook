@@ -1,13 +1,24 @@
 using UnityEngine;
 
-public class Foods : MonoBehaviour
+public class Portal : MonoBehaviour
 {
     [SerializeField] private Collider2D gridArea;
 
-    private void Start()
+    private bool hasSpawned = false;
+    public void Spawn()
     {
+        if (hasSpawned) return;
+        gameObject.SetActive(true);
         RandomizePosition();
+        hasSpawned = true;
     }
+
+    private void Hide()
+    {
+        gameObject.SetActive(false);
+        hasSpawned = false;
+    }
+
     private void RandomizePosition()
     {
         Bounds bounds = gridArea.bounds;
@@ -25,7 +36,6 @@ public class Foods : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        RandomizePosition();
+        Hide();
     }
-
 }

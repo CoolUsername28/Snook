@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class Snake : MonoBehaviour
+public class Snake : MonoBehaviour, IGameStateListener
 {
     private List<Transform> segments = new List<Transform>();
     public Transform segmentPrefab;
@@ -12,18 +12,21 @@ public class Snake : MonoBehaviour
     public float speed = 20f;
     public float speedMultiplier = 1f;
     private float nextUpdate;
+    private bool gameIsRunning = false;
 
     private void Start()
     {
-        ResetState();
+      
     }
 
     private void Update()
     {
+        if (!gameIsRunning) return;
         HandleInput();
     }
     private void FixedUpdate()
     {
+        if (!gameIsRunning) return;
         HandleMovement();
     }
     private void HandleInput()
@@ -113,12 +116,24 @@ public class Snake : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Obstacle"))
         {
-            ResetState();
+            GameManager.Instance.SetGameState(GameState.GAMEOVER);
         }
         else if (other.gameObject.CompareTag("Tail"))
         {
-            ResetState();
+            GameManager.Instance.SetGameState(GameState.GAMEOVER);
         }
     }
 
+    public void GameStateChangedCallback(GameState gameState)
+    {
+        if(gameState == GameState.GAME)
+        {
+            ResetState();
+            gameIsRunning = true;
+        }
+        else
+        {
+            gameIsRunning = false;
+        }
+    }
 }

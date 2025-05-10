@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4396c73ad7dc7fa428e2e429fd88c1c3, type: 3}
+  m_Name: Money Bag
+  m_EditorClassIdentifier: 
+  <upgradeName>k__BackingField: Money Bag
+  <description>k__BackingField: Each score grants an extra coin
+  <image>k__BackingField: {fileID: 18032394, guid: 118dcf6882a1eb742b07370a1b565934, type: 3}
+  <price>k__BackingField: 20

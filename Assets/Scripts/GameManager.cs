@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour, IGameStateListener
 
     public int score = 0;
     public int reqScore;
+    public int money;
 
     private void Awake()
     {
@@ -41,10 +42,12 @@ public class GameManager : MonoBehaviour, IGameStateListener
         }
     }
 
+
+
     public void NextLevelCallback()
     {
         SetGameState(GameState.SHOP);
-        reqScore += 5;
+        money += (score - reqScore);
     }
 
     public void GameStateChangedCallback(GameState gameState)
@@ -53,9 +56,12 @@ public class GameManager : MonoBehaviour, IGameStateListener
         {
             case GameState.GAMEOVER:
                 score = 0;
+                reqScore = 0;
+                money = 0;
                 break;
             case GameState.GAME:
                 score = 0;
+                reqScore += 5;
                 break;
         }
     }

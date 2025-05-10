@@ -30,6 +30,8 @@ public class Shop : MonoBehaviour, IGameStateListener
         for (int i = 0; i < buttonsParent.childCount; i++)
         {
             ShopButton container = buttonsParent.GetChild(i).GetComponent<ShopButton>();
+            UpgradeSO upgrade = container.currentUpgrade;
+            UpgradeManager.Instance.ReAddUpgradeToList(upgrade);
 
             toDestroy.Add(container.gameObject);
         }
@@ -41,12 +43,12 @@ public class Shop : MonoBehaviour, IGameStateListener
             Destroy(t.gameObject);
             toDestroy.RemoveAt(0);
         }
-        int buttonsToAdd = 3;
+        int buttonsToAdd = Mathf.Min(UpgradeManager.Instance.avilableUpgrades.Count, 3);
         for (int i = 0; i < buttonsToAdd; i++)
         {
             ShopButton shopButtonInstance = Instantiate(shopbuttonPrefab, buttonsParent);
 
-            UpgradeSO upgradeSO = RecourcesManager.GetRandomUpgrade();
+            UpgradeSO upgradeSO = UpgradeManager.Instance.AddRandomUpgradeToShop();
 
             shopButtonInstance.Configure(upgradeSO);
         }

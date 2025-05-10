@@ -1310,6 +1310,7 @@ GameObject:
   - component: {fileID: 554146994}
   - component: {fileID: 554146993}
   - component: {fileID: 554146995}
+  - component: {fileID: 554146996}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1332,7 +1333,7 @@ MonoBehaviour:
   portal: {fileID: 779254720}
   score: 0
   reqScore: 0
-  money: 0
+  money: 20
 --- !u!4 &554146994
 Transform:
   m_ObjectHideFlags: 0
@@ -1364,6 +1365,20 @@ MonoBehaviour:
   moneyText: {fileID: 1731831165}
   buttonsParent: {fileID: 1720161594}
   shopbuttonPrefab: {fileID: 4161022422131244294, guid: c4903884cf7ea7049af12530e20df4ae, type: 3}
+--- !u!114 &554146996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554146991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9971987d2861f37489204a29ae69d7a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <avilableUpgrades>k__BackingField: []
+  <activeUpgrades>k__BackingField: []
 --- !u!1 &598612764
 GameObject:
   m_ObjectHideFlags: 0
@@ -3286,7 +3301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   segmentPrefab: {fileID: 5509001123745314968, guid: 53586ef31df32a0478ff3de9a640bfa9, type: 3}
   direction: {x: 1, y: 0}
-  initialSize: 3
+  initialSize: 2
   speed: 5
   speedMultiplier: 1
 --- !u!61 &1195173906

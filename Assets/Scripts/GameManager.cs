@@ -47,7 +47,29 @@ public class GameManager : MonoBehaviour, IGameStateListener
     public void NextLevelCallback()
     {
         SetGameState(GameState.SHOP);
-        money += (score - reqScore);
+        if(UpgradeManager.Instance.hasUpgrade("Money Bag"))
+        {
+            money += (score - reqScore) * 2;
+        }
+        else money += (score - reqScore);
+        if (UpgradeManager.Instance.hasUpgrade("Piggy Bank")) money += 5;
+
+    }
+
+    public bool TrySpendMoney(int ammount)
+    {
+        return money >= ammount;
+    }
+    public void SpendMoney(int ammount)
+    {
+        money -= ammount;
+    }
+
+    private void ResetValues()
+    {
+        score = 0;
+        reqScore = 0;
+        money = 0;
     }
 
     public void GameStateChangedCallback(GameState gameState)
@@ -55,9 +77,8 @@ public class GameManager : MonoBehaviour, IGameStateListener
         switch (gameState)
         {
             case GameState.GAMEOVER:
-                score = 0;
-                reqScore = 0;
-                money = 0;
+                ResetValues();
+                UpgradeManager.Instance.ResetUpgrades();
                 break;
             case GameState.GAME:
                 score = 0;

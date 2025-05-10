@@ -414,6 +414,8 @@ MonoBehaviour:
   nameText: {fileID: 9193089784568677076}
   descripitonText: {fileID: 8212065423511513144}
   priceText: {fileID: 1640530363780169673}
+  button: {fileID: 8664423559215054628}
+  currentUpgrade: {fileID: 0}
 --- !u!1 &4943904836074463273
 GameObject:
   m_ObjectHideFlags: 0

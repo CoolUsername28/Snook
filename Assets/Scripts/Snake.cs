@@ -32,7 +32,7 @@ public class Snake : MonoBehaviour, IGameStateListener
 
     private void Start()
     {
-      
+        health = 1;
     }
 
     private void Update()

@@ -7,14 +7,18 @@ public class GameManager : MonoBehaviour, IGameStateListener
     public static GameManager Instance { get; private set; }
 
     [SerializeField] private Portal portal;
-
+    [SerializeField] private Spikes[] spikes;
+     
+    float spawnTimer;
     string highScoreKey = "HighScore";
     private int matchScore;
     private int highScore;
+    private int spikeCount;
 
     public int score = 0;
     public int reqScore;
     public int money;
+    private bool gameIsRuning = false;
 
     private void Awake()
     {
@@ -37,7 +41,34 @@ public class GameManager : MonoBehaviour, IGameStateListener
             gameStateListener.GameStateChangedCallback(gameState);
 
     }
-
+    private void SpawnSpikes()
+    {
+        float spawnTime = 5f;
+        
+        spawnTimer += Time.deltaTime;
+        if(spawnTimer >= spawnTime)
+        {
+            spawnTimer = 0f;
+            for (int i = 0; i < spikes.Length; i++)
+            {
+                if (i == spikeCount)
+                {
+                    spikes[i].Spawn();
+                    break;
+                }
+                
+            }
+            spikeCount++;
+        }
+    }
+    private void DespawnSpikes()
+    {
+        for (int i = 0; i < spikes.Length; i++)
+        {
+            spikes[i].DeSpawn();
+        }
+        spikeCount = 0;
+    }
     public void FoodCollectedCallback()
     {
         score++;
@@ -48,10 +79,18 @@ public class GameManager : MonoBehaviour, IGameStateListener
         }
     }
 
-
+    private void Update()
+    {
+        if (!gameIsRuning) return;
+        SpawnSpikes();
+    }
 
     public void NextLevelCallback()
     {
+        gameIsRuning = false;
+        DespawnSpikes();
+
+
         SetGameState(GameState.SHOP);
         if(UpgradeManager.Instance.hasUpgrade("Money Bag"))
         {
@@ -77,6 +116,8 @@ public class GameManager : MonoBehaviour, IGameStateListener
         reqScore = 0;
         money = 0;
         matchScore = 0;
+        gameIsRuning = false;
+        DespawnSpikes();
         portal.Hide();
     }
 
@@ -96,6 +137,7 @@ public class GameManager : MonoBehaviour, IGameStateListener
                 UpgradeManager.Instance.ResetUpgrades();
                 break;
             case GameState.GAME:
+                gameIsRuning = true;
                 score = 0;
                 reqScore += 5;
                 break;

@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour, IGameStateListener
                 GameOverUI.Instance.newHighScore(matchScore>highScore);
                 if (matchScore > highScore)
                 {
-                    PlayerPrefs.SetInt(highScoreKey, score);
+                    PlayerPrefs.SetInt(highScoreKey, matchScore);
                     PlayerPrefs.Save();
                 }
                 ResetValues();

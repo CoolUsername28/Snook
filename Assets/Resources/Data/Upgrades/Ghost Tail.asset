@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ghost Tail
   m_EditorClassIdentifier: 
   <upgradeName>k__BackingField: Ghost Tail
-  <description>k__BackingField: Half of your Tail becomes translucent allowing you
-    to pass through it
+  <description>k__BackingField: Your Tail becomes translucent allowing you to pass
+    through it
   <image>k__BackingField: {fileID: -713678007, guid: 118dcf6882a1eb742b07370a1b565934, type: 3}
   <price>k__BackingField: 20

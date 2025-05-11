@@ -17,6 +17,7 @@ public class Snake : MonoBehaviour, IGameStateListener
     private float nextUpdate;
     private bool gameIsRunning = false;
     private int health = 1;
+    private bool ghostTail;
 
     private void Awake()
     {
@@ -44,6 +45,7 @@ public class Snake : MonoBehaviour, IGameStateListener
     {
         if (!gameIsRunning) return;
         HandleMovement();
+        HandleGhostTail();
     }
     private void HandleInput()
     {
@@ -124,6 +126,7 @@ public class Snake : MonoBehaviour, IGameStateListener
         {
             Grow();
         }
+         collider2D.enabled = true;
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -143,16 +146,32 @@ public class Snake : MonoBehaviour, IGameStateListener
         }
         else if (other.gameObject.CompareTag("Obstacle"))
         {
-            collider2D.isTrigger = false;
+            collider2D.enabled = false;
             TakeDamage();
         }
         else if (other.gameObject.CompareTag("Tail"))
         {
-            collider2D.isTrigger = false;
+            collider2D.enabled = false;
             TakeDamage();
         }
     }
+    private void HandleGhostTail()
+    {
+        if (!ghostTail) return;
+        for (int i = 0; i < segments.Count; i++)
+        {
+            Transform t = segments[i];
 
+            if (i > (segments.Count / 2))
+            {
+                t.gameObject.GetComponent<Segment>().GhostMode();
+            }
+          /*  else
+            {
+                t.gameObject.GetComponent<Segment>().NormalMode();
+            }*/
+        }
+    }
     private void TakeDamage()
     {
         ResetState(GameManager.Instance.score);
@@ -162,9 +181,8 @@ public class Snake : MonoBehaviour, IGameStateListener
         {
             GameManager.Instance.SetGameState(GameState.GAMEOVER);
         }
-     
-        collider2D.isTrigger = true;
 
+       
     }
 
     public void GameStateChangedCallback(GameState gameState)
@@ -185,7 +203,7 @@ public class Snake : MonoBehaviour, IGameStateListener
     private void upgradeAddedCallback(UpgradeSO sO)
     {
         if (sO.upgradeName == "Health Potion") { health += 1; GameUI.Instance.UpdateHearts(health); }
-        
+        if (sO.upgradeName == "Ghost Tail") ghostTail = true;
 
     }
 

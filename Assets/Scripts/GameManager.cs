@@ -8,6 +8,10 @@ public class GameManager : MonoBehaviour, IGameStateListener
 
     [SerializeField] private Portal portal;
 
+    string highScoreKey = "HighScore";
+    private int matchScore;
+    private int highScore;
+
     public int score = 0;
     public int reqScore;
     public int money;
@@ -23,6 +27,7 @@ public class GameManager : MonoBehaviour, IGameStateListener
     public void Start()
     {
         SetGameState(GameState.MENU);
+        highScore = PlayerPrefs.GetInt(highScoreKey, 0);
     }
 
     public void SetGameState(GameState gameState)
@@ -36,6 +41,7 @@ public class GameManager : MonoBehaviour, IGameStateListener
     public void FoodCollectedCallback()
     {
         score++;
+        matchScore++;
         if(score >= reqScore)
         {
             portal.Spawn();
@@ -53,7 +59,7 @@ public class GameManager : MonoBehaviour, IGameStateListener
         }
         else money += (score - reqScore);
         if (UpgradeManager.Instance.hasUpgrade("Piggy Bank")) money += 5;
-
+        
     }
 
     public bool TrySpendMoney(int ammount)
@@ -70,6 +76,7 @@ public class GameManager : MonoBehaviour, IGameStateListener
         score = 0;
         reqScore = 0;
         money = 0;
+        matchScore = 0;
         portal.Hide();
     }
 
@@ -78,6 +85,13 @@ public class GameManager : MonoBehaviour, IGameStateListener
         switch (gameState)
         {
             case GameState.GAMEOVER:
+                GameOverUI.Instance.DisplayScoreText(matchScore);
+                GameOverUI.Instance.newHighScore(matchScore>highScore);
+                if (matchScore > highScore)
+                {
+                    PlayerPrefs.SetInt(highScoreKey, score);
+                    PlayerPrefs.Save();
+                }
                 ResetValues();
                 UpgradeManager.Instance.ResetUpgrades();
                 break;

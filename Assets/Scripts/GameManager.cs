@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour, IGameStateListener
         score = 0;
         reqScore = 0;
         money = 0;
+        portal.Hide();
     }
 
     public void GameStateChangedCallback(GameState gameState)

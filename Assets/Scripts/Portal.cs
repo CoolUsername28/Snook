@@ -13,7 +13,7 @@ public class Portal : MonoBehaviour
         hasSpawned = true;
     }
 
-    private void Hide()
+    public void Hide()
     {
         gameObject.SetActive(false);
         hasSpawned = false;

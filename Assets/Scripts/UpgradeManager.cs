@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,8 +7,10 @@ public class UpgradeManager : MonoBehaviour
 {
 
     public static UpgradeManager Instance { get; private set; }
+
+    public static Action<UpgradeSO> upgradeAdded;
     [field: SerializeField] public List<UpgradeSO> avilableUpgrades { get; private set; }
-    [field: SerializeField] public List<string> activeUpgrades { get; private set; }
+    [field: SerializeField] public List<UpgradeSO> activeUpgrades { get; private set; }
 
     private void Awake()
     {
@@ -19,18 +22,20 @@ public class UpgradeManager : MonoBehaviour
         avilableUpgrades = new List<UpgradeSO>();
         avilableUpgrades = RecourcesManager.upgrades.ToList<UpgradeSO>();
 
-        activeUpgrades = new List<string>();
+        activeUpgrades = new List<UpgradeSO>();
     }
 
     public void AddUpgrade(UpgradeSO upgrade)
     {
         avilableUpgrades.Remove(upgrade);
-        activeUpgrades.Add(upgrade.upgradeName);
+        activeUpgrades.Add(upgrade);
+        upgradeAdded?.Invoke(upgrade);
+        GameUI.Instance.DisplayUpgrades(upgrade);
     }
 
     public UpgradeSO AddRandomUpgradeToShop()
     {
-        UpgradeSO upgrade = avilableUpgrades.ElementAt(Random.Range(0, avilableUpgrades.Count));
+        UpgradeSO upgrade = avilableUpgrades.ElementAt(UnityEngine.Random.Range(0, avilableUpgrades.Count));
         avilableUpgrades.Remove(upgrade);
         return upgrade;
     }
@@ -42,9 +47,9 @@ public class UpgradeManager : MonoBehaviour
 
     public bool hasUpgrade(string upgradeName)
     {
-        foreach(string name in activeUpgrades)
+        foreach(UpgradeSO upgrade in activeUpgrades)
         {
-            if (name == upgradeName) return true;
+            if (upgrade.upgradeName == upgradeName) return true;
         }
         return false;
     }

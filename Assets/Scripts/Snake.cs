@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class Snake : MonoBehaviour, IGameStateListener
 {
+    [SerializeField] private BoxCollider2D collider2D;
     private List<Transform> segments = new List<Transform>();
     public Transform segmentPrefab;
     public Vector2 direction = Vector2.right;
@@ -13,6 +16,19 @@ public class Snake : MonoBehaviour, IGameStateListener
     public float speedMultiplier = 1f;
     private float nextUpdate;
     private bool gameIsRunning = false;
+    private int health = 1;
+
+    private void Awake()
+    {
+        UpgradeManager.upgradeAdded += upgradeAddedCallback;
+    }
+
+    private void OnDestroy()
+    {
+
+        UpgradeManager.upgradeAdded -= upgradeAddedCallback;
+        
+    }
 
     private void Start()
     {
@@ -89,7 +105,8 @@ public class Snake : MonoBehaviour, IGameStateListener
         segments.Add(segment);
     }
 
-    public void ResetState()
+ 
+    public void ResetState(int size)
     {
         direction = Vector2.right;
         transform.position = Vector3.zero;
@@ -103,7 +120,7 @@ public class Snake : MonoBehaviour, IGameStateListener
         segments.Clear();
         segments.Add(transform);
         // -1 since the head is already in the list
-        for (int i = 0; i < initialSize - 1; i++)
+        for (int i = 0; i < (initialSize+size) - 1; i++)
         {
             Grow();
         }
@@ -114,6 +131,11 @@ public class Snake : MonoBehaviour, IGameStateListener
         {
             GameManager.Instance.FoodCollectedCallback();
             Grow();
+            if(UpgradeManager.Instance.hasUpgrade("Better Apple"))
+            {
+                GameManager.Instance.FoodCollectedCallback();
+                Grow();
+            }
         }
         else if (other.gameObject.CompareTag("Portal"))
         {
@@ -121,19 +143,38 @@ public class Snake : MonoBehaviour, IGameStateListener
         }
         else if (other.gameObject.CompareTag("Obstacle"))
         {
-            GameManager.Instance.SetGameState(GameState.GAMEOVER);
+            collider2D.isTrigger = false;
+            TakeDamage();
         }
         else if (other.gameObject.CompareTag("Tail"))
         {
+            collider2D.isTrigger = false;
+            TakeDamage();
+        }
+    }
+
+    private void TakeDamage()
+    {
+        ResetState(GameManager.Instance.score);
+        health--;
+        GameUI.Instance.UpdateHearts(health);
+        if (health == 0)
+        {
             GameManager.Instance.SetGameState(GameState.GAMEOVER);
         }
+     
+        collider2D.isTrigger = true;
+
     }
 
     public void GameStateChangedCallback(GameState gameState)
     {
         if(gameState == GameState.GAME)
         {
-            ResetState();
+            ResetState(0);
+            health = 1;
+            if (UpgradeManager.Instance.hasUpgrade("Health Potion")) health = 2;
+            GameUI.Instance.UpdateHearts(health);
             gameIsRunning = true;
         }
         else
@@ -141,4 +182,11 @@ public class Snake : MonoBehaviour, IGameStateListener
             gameIsRunning = false;
         }
     }
+    private void upgradeAddedCallback(UpgradeSO sO)
+    {
+        if (sO.upgradeName == "Health Potion") { health += 1; GameUI.Instance.UpdateHearts(health); }
+        
+
+    }
+
 }

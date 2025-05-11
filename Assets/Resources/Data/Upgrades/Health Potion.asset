@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4396c73ad7dc7fa428e2e429fd88c1c3, type: 3}
   m_Name: Health Potion
   m_EditorClassIdentifier: 
-  <upgradeName>k__BackingField: Health Poition
+  <upgradeName>k__BackingField: Health Potion
   <description>k__BackingField: Grants an extra Heart
   <image>k__BackingField: {fileID: -1303687551, guid: 118dcf6882a1eb742b07370a1b565934, type: 3}
   <price>k__BackingField: 10

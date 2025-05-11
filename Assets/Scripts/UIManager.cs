@@ -42,6 +42,7 @@ public class UIManager : MonoBehaviour, IGameStateListener
                 ShowPanel(shopPanel);
                 break;
             case GameState.GAMEOVER:
+                GameUI.Instance.ClearUpgradeDisplay();
                 ShowPanel(gameOverPanel);
                 break;
 

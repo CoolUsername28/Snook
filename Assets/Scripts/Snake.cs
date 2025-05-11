@@ -191,6 +191,8 @@ public class Snake : MonoBehaviour, IGameStateListener
         {
             ResetState(0);
             health = 1;
+            speed = 5;
+            if (UpgradeManager.Instance.hasUpgrade("Rocket")) speed = 7;
             if (UpgradeManager.Instance.hasUpgrade("Health Potion")) health = 2;
             GameUI.Instance.UpdateHearts(health);
             gameIsRunning = true;
@@ -204,6 +206,7 @@ public class Snake : MonoBehaviour, IGameStateListener
     {
         if (sO.upgradeName == "Health Potion") { health += 1; GameUI.Instance.UpdateHearts(health); }
         if (sO.upgradeName == "Ghost Tail") ghostTail = true;
+        
 
     }
 

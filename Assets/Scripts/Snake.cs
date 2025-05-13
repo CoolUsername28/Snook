@@ -16,8 +16,9 @@ public class Snake : MonoBehaviour, IGameStateListener
     public float speedMultiplier = 1f;
     private float nextUpdate;
     private bool gameIsRunning = false;
-    private int health = 1;
+    public int health = 1;
     private bool ghostTail;
+    private bool damageble;
 
     private void Awake()
     {
@@ -110,15 +111,15 @@ public class Snake : MonoBehaviour, IGameStateListener
  
     public void ResetState(int size)
     {
-        direction = Vector2.right;
-        transform.position = Vector3.zero;
-
+        damageble = false;
         // Start at 1 to skip destroying the head
-        for (int i = 1; i < segments.Count; i++)
+       for (int i = 1; i < segments.Count; i++)
         {
             Destroy(segments[i].gameObject);
         }
         // Clear the list but add back this as the head
+        direction = Vector2.right;
+        transform.position = Vector3.zero;
         segments.Clear();
         segments.Add(transform);
         // -1 since the head is already in the list
@@ -127,6 +128,7 @@ public class Snake : MonoBehaviour, IGameStateListener
             Grow();
         }
          collider2D.enabled = true;
+        damageble = true;
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -148,11 +150,17 @@ public class Snake : MonoBehaviour, IGameStateListener
         {
             collider2D.enabled = false;
             TakeDamage();
+            
+            
+            print("HH");
         }
         else if (other.gameObject.CompareTag("Tail"))
         {
             collider2D.enabled = false;
             TakeDamage();
+           
+            print("Rocco");
+            // tail is hella retarded you spawn in your tail and take shit ton of damage
         }
     }
     private void HandleGhostTail()
@@ -174,6 +182,8 @@ public class Snake : MonoBehaviour, IGameStateListener
     }
     private void TakeDamage()
     {
+        if (!damageble) return;
+        
         ResetState(GameManager.Instance.score);
         health--;
         GameUI.Instance.UpdateHearts(health);
@@ -182,7 +192,6 @@ public class Snake : MonoBehaviour, IGameStateListener
             GameManager.Instance.SetGameState(GameState.GAMEOVER);
         }
 
-       
     }
 
     public void GameStateChangedCallback(GameState gameState)
@@ -192,8 +201,10 @@ public class Snake : MonoBehaviour, IGameStateListener
             ResetState(0);
             health = 1;
             speed = 5;
+            ghostTail = false;
             if (UpgradeManager.Instance.hasUpgrade("Rocket")) speed = 7;
             if (UpgradeManager.Instance.hasUpgrade("Health Potion")) health = 2;
+            if (UpgradeManager.Instance.hasUpgrade( "Ghost Tail")) ghostTail = true;
             GameUI.Instance.UpdateHearts(health);
             gameIsRunning = true;
         }
@@ -205,7 +216,7 @@ public class Snake : MonoBehaviour, IGameStateListener
     private void upgradeAddedCallback(UpgradeSO sO)
     {
         if (sO.upgradeName == "Health Potion") { health += 1; GameUI.Instance.UpdateHearts(health); }
-        if (sO.upgradeName == "Ghost Tail") ghostTail = true;
+ 
         
 
     }

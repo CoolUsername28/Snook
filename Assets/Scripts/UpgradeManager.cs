@@ -61,6 +61,4 @@ public class UpgradeManager : MonoBehaviour
 
         avilableUpgrades = RecourcesManager.upgrades.ToList<UpgradeSO>();
     }
-
-
 }

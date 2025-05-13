@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour, IGameStateListener
     [SerializeField] private Spikes[] spikes;
      
     float spawnTimer;
+    private float spawnTime = 5f;
     string highScoreKey = "HighScore";
     private int matchScore;
     private int highScore;
@@ -43,7 +44,7 @@ public class GameManager : MonoBehaviour, IGameStateListener
     }
     private void SpawnSpikes()
     {
-        float spawnTime = 5f;
+     
         
         spawnTimer += Time.deltaTime;
         if(spawnTimer >= spawnTime)
@@ -117,6 +118,7 @@ public class GameManager : MonoBehaviour, IGameStateListener
         money = 0;
         matchScore = 0;
         gameIsRuning = false;
+        spawnTime = 5f;
         DespawnSpikes();
         portal.Hide();
     }
@@ -138,6 +140,7 @@ public class GameManager : MonoBehaviour, IGameStateListener
                 break;
             case GameState.GAME:
                 gameIsRuning = true;
+                if (UpgradeManager.Instance.hasUpgrade("Shield")) spawnTime = 8f;
                 score = 0;
                 reqScore += 5;
                 break;

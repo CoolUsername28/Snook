@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4396c73ad7dc7fa428e2e429fd88c1c3, type: 3}
   m_Name: Orchard
   m_EditorClassIdentifier: 
-  <upgradeName>k__BackingField: 
-  <description>k__BackingField: 
-  <image>k__BackingField: {fileID: 0}
-  <price>k__BackingField: 0
+  <upgradeName>k__BackingField: Orchard
+  <description>k__BackingField: Spawns a second apple
+  <image>k__BackingField: {fileID: 21300000, guid: 33d414bff6799374cb4d6e0b04345d75, type: 3}
+  <price>k__BackingField: 10

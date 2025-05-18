@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+
 [RequireComponent(typeof(BoxCollider2D))]
 public class Snake : MonoBehaviour, IGameStateListener
 {
@@ -220,5 +221,6 @@ public class Snake : MonoBehaviour, IGameStateListener
         
 
     }
+    //digga ich raste aus
 
 }

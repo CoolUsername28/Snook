@@ -8,7 +8,7 @@ public class Foods : MonoBehaviour
     {
         RandomizePosition();
     }
-    private void RandomizePosition()
+    public void RandomizePosition()
     {
         Bounds bounds = gridArea.bounds;
 

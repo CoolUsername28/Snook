@@ -1,12 +1,14 @@
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
+using System;
 
 public class GameManager : MonoBehaviour, IGameStateListener
 {
     public static GameManager Instance { get; private set; }
 
     [SerializeField] private Portal portal;
+    [SerializeField] private Foods secondFood;
     [SerializeField] private Spikes[] spikes;
      
     float spawnTimer;
@@ -33,6 +35,20 @@ public class GameManager : MonoBehaviour, IGameStateListener
     {
         SetGameState(GameState.MENU);
         highScore = PlayerPrefs.GetInt(highScoreKey, 0);
+        UpgradeManager.upgradeAdded += UpgradeAddedCallback;
+    }
+    private void OnDestroy()
+    {
+        UpgradeManager.upgradeAdded -= UpgradeAddedCallback;
+    }
+
+    private void UpgradeAddedCallback(UpgradeSO so)
+    {
+         if(so.upgradeName == "Orchard")
+        {
+            secondFood.gameObject.SetActive(true);
+            secondFood.RandomizePosition();
+        }
     }
 
     public void SetGameState(GameState gameState)

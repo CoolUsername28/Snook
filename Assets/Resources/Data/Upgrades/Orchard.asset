@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <upgradeName>k__BackingField: Orchard
   <description>k__BackingField: Spawns a second apple
-  <image>k__BackingField: {fileID: 21300000, guid: 33d414bff6799374cb4d6e0b04345d75, type: 3}
+  <image>k__BackingField: {fileID: 544624569, guid: 118dcf6882a1eb742b07370a1b565934, type: 3}
   <price>k__BackingField: 10

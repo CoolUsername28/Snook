@@ -19,7 +19,7 @@ public class Snake : MonoBehaviour, IGameStateListener
     private bool gameIsRunning = false;
     public int health = 1;
     private bool ghostTail;
-    private bool damageble;
+    private bool damageble = true;
 
     private void Awake()
     {
@@ -112,7 +112,7 @@ public class Snake : MonoBehaviour, IGameStateListener
  
     public void ResetState(int size)
     {
-        damageble = false;
+     
         // Start at 1 to skip destroying the head
        for (int i = 1; i < segments.Count; i++)
         {
@@ -129,7 +129,7 @@ public class Snake : MonoBehaviour, IGameStateListener
             Grow();
         }
          collider2D.enabled = true;
-        damageble = true;
+         
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -151,14 +151,15 @@ public class Snake : MonoBehaviour, IGameStateListener
         {
             collider2D.enabled = false;
             TakeDamage();
-            
-            
+            LeanTween.delayedCall(0.1f, () => damageble = false);
+
             print("HH");
         }
         else if (other.gameObject.CompareTag("Tail"))
         {
             collider2D.enabled = false;
             TakeDamage();
+            LeanTween.delayedCall(0.1f, () => damageble = false);
            
             print("Rocco");
             // tail is hella retarded you spawn in your tail and take shit ton of damage
@@ -192,6 +193,7 @@ public class Snake : MonoBehaviour, IGameStateListener
         {
             GameManager.Instance.SetGameState(GameState.GAMEOVER);
         }
+        LeanTween.delayedCall(1f, () => damageble = true);
 
     }
 

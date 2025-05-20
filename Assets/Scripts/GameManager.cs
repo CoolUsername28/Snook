@@ -137,6 +137,12 @@ public class GameManager : MonoBehaviour, IGameStateListener
         spawnTime = 5f;
         DespawnSpikes();
         portal.Hide();
+        secondFood.gameObject.SetActive(false);
+    }
+
+    public int GetHighScore()
+    {
+        return highScore;
     }
 
     public void GameStateChangedCallback(GameState gameState)
@@ -150,6 +156,7 @@ public class GameManager : MonoBehaviour, IGameStateListener
                 {
                     PlayerPrefs.SetInt(highScoreKey, matchScore);
                     PlayerPrefs.Save();
+                    highScore = PlayerPrefs.GetInt(highScoreKey, 0);
                 }
                 ResetValues();
                 UpgradeManager.Instance.ResetUpgrades();

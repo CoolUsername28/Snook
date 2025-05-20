@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,6 +6,7 @@ public class MenuUI : MonoBehaviour
 {
     [SerializeField] private Button startButton;
     [SerializeField] private Button quitButton;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
     private void Awake()
     {
@@ -13,6 +15,12 @@ public class MenuUI : MonoBehaviour
 
         quitButton.onClick.RemoveAllListeners();
         quitButton.onClick.AddListener(() => ExitGame());
+    }
+
+    private void Update()
+    {
+        if (!gameObject.activeSelf) return;
+        scoreText.text = "High Score: " + GameManager.Instance.GetHighScore().ToString();
     }
 
     private void StartGame()

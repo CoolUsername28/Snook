@@ -11,8 +11,8 @@ public class Snake : MonoBehaviour, IGameStateListener
   
     private List<Transform> segments = new List<Transform>();
     public Transform segmentPrefab;
-    public Vector2 direction = Vector2.right;
-    private Vector2 input;
+    public Vector2 direction = Vector2.up;
+    private Vector2 input= Vector2.up;
     public int initialSize = 4;
     public float speed = 20f;
     public float speedMultiplier = 1f;
@@ -84,6 +84,7 @@ public class Snake : MonoBehaviour, IGameStateListener
         if (input != Vector2.zero)
         {
             direction = input;
+            
         }
         //Slow down the time
         if (Time.time < nextUpdate)
@@ -101,6 +102,7 @@ public class Snake : MonoBehaviour, IGameStateListener
         float x = Mathf.Round(transform.position.x) + direction.x;
         float y = Mathf.Round(transform.position.y) + direction.y;
         transform.position = new Vector2(x, y);
+        transform.up = direction;
         nextUpdate = Time.time + (1f / (speed * speedMultiplier));
     }
     public void Grow()

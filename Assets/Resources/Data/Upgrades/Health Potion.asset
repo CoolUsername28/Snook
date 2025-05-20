@@ -15,4 +15,4 @@ MonoBehaviour:
   <upgradeName>k__BackingField: Health Potion
   <description>k__BackingField: Grants an extra Heart
   <image>k__BackingField: {fileID: -1303687551, guid: 118dcf6882a1eb742b07370a1b565934, type: 3}
-  <price>k__BackingField: 10
+  <price>k__BackingField: 15

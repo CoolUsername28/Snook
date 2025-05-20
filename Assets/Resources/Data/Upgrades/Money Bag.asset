@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Money Bag
   m_EditorClassIdentifier: 
   <upgradeName>k__BackingField: Money Bag
-  <description>k__BackingField: Each score grants an extra coin
+  <description>k__BackingField: Each apple grants an extra coin
   <image>k__BackingField: {fileID: 18032394, guid: 118dcf6882a1eb742b07370a1b565934, type: 3}
-  <price>k__BackingField: 20
+  <price>k__BackingField: 50

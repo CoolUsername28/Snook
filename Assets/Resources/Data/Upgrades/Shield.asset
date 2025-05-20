@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <upgradeName>k__BackingField: Shield
   <description>k__BackingField: Slightly decreases obstacle spawnrate
-  <image>k__BackingField: {fileID: -4578300474271195214, guid: 899bb4175bdbaf94fa08b66605baf26d, type: 3}
-  <price>k__BackingField: 10
+  <image>k__BackingField: {fileID: -1833941373, guid: 118dcf6882a1eb742b07370a1b565934, type: 3}
+  <price>k__BackingField: 20

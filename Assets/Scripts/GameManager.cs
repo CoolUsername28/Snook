@@ -110,13 +110,19 @@ public class GameManager : MonoBehaviour, IGameStateListener
         gameIsRuning = false;
         DespawnSpikes();
 
-
+       
         SetGameState(GameState.SHOP);
-        if(UpgradeManager.Instance.hasUpgrade("Money Bag"))
+        if (UpgradeManager.Instance.hasUpgrade("Money Bag"))
         {
-            money += (score - reqScore) * 2;
+            money += reqScore * 2;
+            money += (score - reqScore) * 3;
         }
-        else money += (score - reqScore);
+        else 
+        {
+            money += reqScore;
+            money += (score - reqScore) * 2;
+
+        }
         if (UpgradeManager.Instance.hasUpgrade("Piggy Bank")) money += 5;
         
     }

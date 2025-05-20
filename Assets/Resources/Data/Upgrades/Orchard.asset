@@ -15,4 +15,4 @@ MonoBehaviour:
   <upgradeName>k__BackingField: Orchard
   <description>k__BackingField: Spawns a second apple
   <image>k__BackingField: {fileID: 544624569, guid: 118dcf6882a1eb742b07370a1b565934, type: 3}
-  <price>k__BackingField: 10
+  <price>k__BackingField: 20

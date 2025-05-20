@@ -19,7 +19,7 @@ public class Snake : MonoBehaviour, IGameStateListener
     private bool gameIsRunning = false;
     public int health = 1;
     private bool ghostTail;
-    private bool damageble = true;
+ 
 
     private void Awake()
     {

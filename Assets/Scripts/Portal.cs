@@ -38,4 +38,8 @@ public class Portal : MonoBehaviour
     {
         Hide();
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        RandomizePosition();
+    }
 }

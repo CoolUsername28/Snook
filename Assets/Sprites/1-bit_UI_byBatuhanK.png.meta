@@ -334,6 +334,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_9
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 162
+        width: 39
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9a920ca8d3fe504e8cd8cf12fbdacf0
+      internalID: 457889215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -357,6 +379,7 @@ TextureImporter:
       1-bit_UI_byBatuhanK_6: -887180072
       1-bit_UI_byBatuhanK_7: 2061442128
       1-bit_UI_byBatuhanK_8: -1834765209
+      1-bit_UI_byBatuhanK_9: 457889215
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

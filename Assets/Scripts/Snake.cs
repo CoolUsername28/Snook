@@ -8,6 +8,7 @@ using UnityEngine;
 public class Snake : MonoBehaviour, IGameStateListener
 {
     [SerializeField] private BoxCollider2D collider2D;
+  
     private List<Transform> segments = new List<Transform>();
     public Transform segmentPrefab;
     public Vector2 direction = Vector2.right;
@@ -104,6 +105,7 @@ public class Snake : MonoBehaviour, IGameStateListener
     }
     public void Grow()
     {
+     
         Transform segment = Instantiate(segmentPrefab);
         segment.position = segments[segments.Count - 1].position;
         segments.Add(segment);
@@ -140,6 +142,7 @@ public class Snake : MonoBehaviour, IGameStateListener
             if(UpgradeManager.Instance.hasUpgrade("Better Apple"))
             {
                 GameManager.Instance.FoodCollectedCallback();
+          
                 Grow();
             }
         }

@@ -1,4 +1,5 @@
 using TMPro;
+using UnityEditor.Media;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,15 +9,16 @@ public class GameOverUI : MonoBehaviour, IGameStateListener
     public static GameOverUI Instance { get; private set; }
     [SerializeField] private Button retryButton;
     [SerializeField] private Button menuButton;
-    [SerializeField] private TextMeshProUGUI splashText;
+    [SerializeField] private TextMeshProUGUI splashTextUI;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI highscoreText;
-    public string[] plashTexts;
+    [SerializeField] private AudioClip gameStartFx;
+    public string[] splashTexts;
 
     
-    private void plashText()
+    private void splashText()
     {
-        splashText.text = plashTexts[Random.Range(0, plashTexts.Length)];
+        splashTextUI.text = splashTexts[Random.Range(0, splashTexts.Length)];
     }
     private void Awake()
     {
@@ -27,7 +29,7 @@ public class GameOverUI : MonoBehaviour, IGameStateListener
             Destroy(gameObject);
 
         retryButton.onClick.RemoveAllListeners();
-        retryButton.onClick.AddListener(() => GameManager.Instance.SetGameState(GameState.GAME));
+        retryButton.onClick.AddListener(() => Retry());
 
         menuButton.onClick.RemoveAllListeners();
         menuButton.onClick.AddListener(() => GameManager.Instance.SetGameState(GameState.MENU));
@@ -38,11 +40,16 @@ public class GameOverUI : MonoBehaviour, IGameStateListener
         switch (gameState)
         {
             case GameState.GAMEOVER:
-                plashText();
+                splashText();
                 break;
         }
     }
 
+    private void Retry()
+    {
+        AudioManager.Instance.PlaySoundClip(gameStartFx, transform, 1f);
+        GameManager.Instance.SetGameState(GameState.GAME);
+    }
     public void DisplayScoreText(int score)
     {
         scoreText.text = score.ToString();

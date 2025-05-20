@@ -3,7 +3,7 @@ using UnityEngine;
 public class Foods : MonoBehaviour
 {
     [SerializeField] private Collider2D gridArea;
-
+    
     private void Start()
     {
         RandomizePosition();

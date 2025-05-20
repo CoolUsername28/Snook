@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour, IGameStateListener
     [SerializeField] private Portal portal;
     [SerializeField] private Foods secondFood;
     [SerializeField] private Spikes[] spikes;
+    [SerializeField] private AudioClip eatSfx;
+    [SerializeField] private AudioClip gameOverSfx;
      
     float spawnTimer;
     private float spawnTime = 5f;
@@ -88,6 +90,7 @@ public class GameManager : MonoBehaviour, IGameStateListener
     }
     public void FoodCollectedCallback()
     {
+        AudioManager.Instance.PlaySoundClip(eatSfx, transform, 1f);
         score++;
         matchScore++;
         if(score >= reqScore)
@@ -150,6 +153,7 @@ public class GameManager : MonoBehaviour, IGameStateListener
         switch (gameState)
         {
             case GameState.GAMEOVER:
+                AudioManager.Instance.PlaySoundClip(gameOverSfx, transform, 1f);
                 GameOverUI.Instance.DisplayScoreText(matchScore);
                 GameOverUI.Instance.newHighScore(matchScore>highScore);
                 if (matchScore > highScore)

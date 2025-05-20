@@ -9,6 +9,7 @@ public class ShopButton : MonoBehaviour
     [SerializeField] private TextMeshProUGUI descripitonText;
     [SerializeField] private TextMeshProUGUI priceText;
     [SerializeField] private Button button;
+    [SerializeField] private AudioClip audioClip;
 
     public UpgradeSO currentUpgrade;
 
@@ -32,6 +33,7 @@ public class ShopButton : MonoBehaviour
         int price = currentUpgrade.price;
         if (!GameManager.Instance.TrySpendMoney(price)) return;
 
+        AudioManager.Instance.PlaySoundClip(audioClip, transform, 1f);
         GameManager.Instance.SpendMoney(price);
         UpgradeManager.Instance.AddUpgrade(currentUpgrade);
         transform.SetParent(null);

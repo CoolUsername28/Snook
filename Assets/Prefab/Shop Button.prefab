@@ -415,6 +415,7 @@ MonoBehaviour:
   descripitonText: {fileID: 8212065423511513144}
   priceText: {fileID: 1640530363780169673}
   button: {fileID: 8664423559215054628}
+  audioClip: {fileID: 8300000, guid: 8c2de7b584da93f43a7267610550b5be, type: 3}
   currentUpgrade: {fileID: 0}
 --- !u!1 &4943904836074463273
 GameObject:

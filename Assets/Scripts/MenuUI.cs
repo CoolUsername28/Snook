@@ -47,7 +47,6 @@ public class MenuUI : MonoBehaviour
 
     private void ToggleSettingsFromMenu()
     {
-        showingSettings = !showingSettings;
-        settingsPanel.SetActive(showingSettings);
+        SettingsUI.Instance.ToggleSettings();
     }
 }

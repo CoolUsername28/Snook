@@ -29,8 +29,12 @@ public class Spikes : MonoBehaviour
         gameObject.SetActive(false);
     }
 
- 
- 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Food")) RandomizePosition();
+        else if (collision.gameObject.CompareTag("Portal")) RandomizePosition();
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         

@@ -409,7 +409,7 @@ TextureImporter:
         width: 40
         height: 9
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -418,6 +418,28 @@ TextureImporter:
       bones: []
       spriteID: ac849f13bdc70f84a969d66c9ee61577
       internalID: -1352865990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1-bit_UI_byBatuhanK_13
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 158
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7928caaab695d54282a320db623f467
+      internalID: 1370655241
       vertices: []
       indices: 
       edges: []
@@ -441,6 +463,7 @@ TextureImporter:
       1-bit_UI_byBatuhanK_10: 1649683116
       1-bit_UI_byBatuhanK_11: 1699244098
       1-bit_UI_byBatuhanK_12: -1352865990
+      1-bit_UI_byBatuhanK_13: 1370655241
       1-bit_UI_byBatuhanK_2: -2062380616
       1-bit_UI_byBatuhanK_3: -1991865858
       1-bit_UI_byBatuhanK_4: -2026015105

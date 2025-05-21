@@ -11,6 +11,7 @@ public class Segment : MonoBehaviour
     {
         boxCollider.enabled = false;
         sprite.color = Color.cyan;
+        
     }
     public void NormalMode()
     {

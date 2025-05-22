@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour, IGameStateListener
         }
     }
 
+    //Bestämer vilket status spelet är
     public void SetGameState(GameState gameState)
     {
         IEnumerable<IGameStateListener> gameStateListeners = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IGameStateListener>();
@@ -62,7 +63,7 @@ public class GameManager : MonoBehaviour, IGameStateListener
     }
     private void SpawnSpikes()
     {
-     
+        //Spawnar spikar
         
         spawnTimer += Time.deltaTime;
         if(spawnTimer >= spawnTime)
@@ -184,3 +185,4 @@ public interface IGameStateListener
 {
     void GameStateChangedCallback(GameState gameState);
 }
+//Anton aus Tirol1111!!!!!!!!

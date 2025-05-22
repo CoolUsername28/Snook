@@ -23,7 +23,7 @@ public class SoundMixerManager : MonoBehaviour
         audioMixer.SetFloat("MasterVolume", Mathf.Log(level)* 20f);
         PlayerPrefs.SetFloat(masterKey, level);
         PlayerPrefs.Save();
-        Debug.Log("Theres a big black man looking over me");
+        
     }
 
     public void SetMusicVolume(float level)

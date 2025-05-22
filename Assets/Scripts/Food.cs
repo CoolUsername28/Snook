@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Foods : MonoBehaviour
 {
+    // food, spikes och portals skulle defentivt bli en enkel collictible class men har inte haft tid
     [SerializeField] private Collider2D gridArea;
     
     private void Start()

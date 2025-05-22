@@ -8,7 +8,7 @@ using UnityEngine;
 public class Snake : MonoBehaviour, IGameStateListener
 {
     [SerializeField] private BoxCollider2D collider2D;
-  
+    //random saker stulna från camilla
     private List<Transform> segments = new List<Transform>();
     public Transform segmentPrefab;
     public Vector2 direction = Vector2.up;
@@ -135,6 +135,8 @@ public class Snake : MonoBehaviour, IGameStateListener
         
          
     }
+
+    //Kollar vad ormen kolliderar med
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Food"))

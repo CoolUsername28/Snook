@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 3946081021298581137}
   - component: {fileID: 1447059913391894779}
   - component: {fileID: 2801211984875841577}
+  - component: {fileID: 523244653640680002}
   m_Layer: 0
   m_Name: Spikes
   m_TagString: Obstacle
@@ -238,6 +239,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridArea: {fileID: 803391035525637340, guid: dbf963edc16b17d48a089ab1b7cd3042, type: 3}
+--- !u!50 &523244653640680002
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827320681275846359}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &7452699982866478268
 GameObject:
   m_ObjectHideFlags: 0

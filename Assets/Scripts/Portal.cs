@@ -36,10 +36,11 @@ public class Portal : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Hide();
+        if (other.gameObject.tag == "Player")
+        {
+            Hide();
+        }
+        
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        RandomizePosition();
-    }
+
 }

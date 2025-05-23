@@ -28,9 +28,5 @@ public class Foods : MonoBehaviour
     {
         RandomizePosition();
     }
-  
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.tag == "Portal") RandomizePosition();
-    }
+
 }
